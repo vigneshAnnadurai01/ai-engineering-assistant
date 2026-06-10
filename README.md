@@ -1,316 +1,147 @@
-📖 Production-Level Architecture Document
-MCP-Based Intelligent Account Routing Architecture
-Executive Summary
-The MCP (Model Context Pipeline) Account Routing System is a modular orchestration framework designed to intelligently process user requests and route them to specialized account-related services.
-The architecture follows enterprise software engineering principles including:
+📌 MCP-Based Intelligent Account Routing System
+🚀 Overview
 
+The MCP (Model Context Pipeline) System is a modular orchestration framework designed to intelligently process user requests and route them to specialized account-related services.
 
-Separation of Concerns
+It acts as a central decision-making layer between user input and backend business services, enabling:
 
-Plugin-Based Extensibility
+Intelligent request routing
+Scalable plugin-based architecture
+Async processing support
+Context-aware tool selection
+Clean separation of concerns
+🧠 Core Principles
+🔹 Separation of Concerns
+🔹 Plugin-Based Extensibility
+🔹 Async Processing Architecture
+🔹 Intelligent Routing Engine
+🔹 Centralized Orchestration Layer
+🏗️ System Architecture
+flowchart LR
+    U[User Request] --> M[MCP Server]
+    M --> O[Request Orchestrator]
+    O --> R[Tool Router]
+    R --> I[Intent Classification Engine]
 
-Async Processing
+    I --> A1[Analytics Tools]
+    I --> A2[Assistant Tools]
+    I --> T1[Generic Tools]
 
-Intelligent Routing
+    A1 --> ACC1[Account Services]
+    A2 --> ACC2[Account Services]
+    T1 --> GEN[General Services]
 
-Centralized Orchestration
-The system acts as a decision-making layer between incoming user requests and business-specific account services.
-System Architecture
-User Request
-      │
-      ▼
-┌─────────────────────────┐
-│       MCP Server        │
-│  Request Orchestrator   │
-└───────────┬─────────────┘
-            │
-            ▼
-┌─────────────────────────┐
-│      Tool Router        │
-│   Intent Classification │
-└───────────┬─────────────┘
-            │
-      ┌─────┼─────┐
-      │     │     │
-      ▼     ▼     ▼
+    ACC1 --> RESP[Response Generator]
+    ACC2 --> RESP
+    GEN --> RESP
 
-┌──────────┐ ┌──────────┐ ┌──────────┐
-│ Account  │ │ Account  │ │ General  │
-│Management│ │Analytics │ │Assistant │
-│   Tool   │ │   Tool   │ │   Tool   │
-└────┬─────┘ └────┬─────┘ └────┬─────┘
-     │            │            │
-     └──────┬─────┴─────┬──────┘
-            ▼           ▼
+    RESP --> FINAL[Final Response]
 
-┌─────────────────────────┐
-│   Response Generator    │
-└───────────┬─────────────┘
-            ▼
 
-┌─────────────────────────┐
-│     Final Response      │
-└─────────────────────────┘
+🔄 Request Processing Lifecycle
+Step 1: User Request
 
-Request Processing Lifecycle
-Step 1 – User Request
-The user submits a request:
+User submits a request through API / UI layer.
 
-Show customer account details
+Step 2: MCP Server
 
+The request enters the MCP Server which acts as the entry point.
 
-or
+Step 3: Request Orchestrator
 
-Generate account performance report
+Coordinates the entire flow and manages routing logic.
 
+Step 4: Tool Router
 
-The request enters the MCP Orchestration Layer.
-Step 2 – MCP Server
-The MCP Server acts as the central coordinator.
-Responsibilities:
+Determines which internal system should handle the request.
 
+Step 5: Intent Classification
 
-Receive request
+Analyzes request intent using classification engine:
 
-Trigger routing process
-
-Manage execution flow
-
-Coordinate response generation
-Example:
-
-
-tool_output = await tool_router.execute(query)
-
-
-Step 3 – Intent Classification
-The Tool Router analyzes the request.
-Example:
-
-"account details"
-
-
-↓
-
-Account Management Tool
-
-
-Example:
-
-"account report"
-
-
-↓
-
-Account Analytics Tool
-
-
-The router also generates a confidence score.
-
-Management Request → 95%
-Analytics Request → 93%
-Fallback Request → 70%
-
-Step 4 – Tool Execution
-Account Management Tool
-Responsibilities:
-
-
-Customer account lookup
-
-Profile management
-
-Account updates
-
-Status verification
-Input:
-
-User Query
-Optional Document
-
-Output:
-
-
-{
-  "tool": "ACCOUNT_MANAGEMENT",
-  "result": "Account information retrieved"
-}
-
-Account Analytics Tool
-Responsibilities:
-
-
-Account performance metrics
-
-Usage analysis
-
-Cost reporting
-
-Activity insights
-Output:
-
-
-{
-  "tool": "ACCOUNT_ANALYTICS",
-  "result": "Account analytics generated"
-}
-
-General Assistant Tool
-Fallback service for:
-
-
-FAQs
-
-General assistance
-
-Knowledge queries
-
-Unsupported requests
-Step 5 – Response Generation
-All tool outputs are standardized through the Response Generator.
-Example:
-
-MCP AI SYSTEM RESPONSE
-
-User Query:
-Generate account report
-
-Tool Used:
-ACCOUNT_ANALYTICS
-
-Confidence:
-93%
-
-Result:
-Account analytics generated successfully
-
-Design Principles
-1. Separation of Responsibilities
-MCP Server
-Responsible for:
-
-
-Workflow orchestration
-
-Request coordination
-Tool Router
-Responsible for:
-
-
-Intent detection
-
-Tool selection
+Analytics
+Assistant
 Tools
-Responsible for:
+General Queries
+Step 6: Service Execution
+
+Routes request to appropriate domain services:
+
+Account Services
+General Services
+Management Services
+Step 7: Response Generator
+
+Aggregates outputs and formats final structured response.
+
+Step 8: Final Response
+
+Returns optimized response to the user.
+
+🔁 Sequence Flow (Runtime Behavior)
+
+sequenceDiagram
+    participant User
+    participant MCP
+    participant Orchestrator
+    participant Router
+    participant Intent
+    participant Service
+    participant Response
+
+    User->>MCP: Send Request
+    MCP->>Orchestrator: Forward Request
+    Orchestrator->>Router: Route Decision
+    Router->>Intent: Classify Intent
+    Intent->>Service: Execute Service Logic
+    Service->>Response: Return Data
+    Response->>User: Final Response
 
 
-Business logic execution
-Response Generator
-Responsible for:
+
+🔌 Component Breakdown
+🧭 MCP Server
+
+Entry point that receives and validates all incoming requests.
+
+🎯 Request Orchestrator
+
+Controls flow execution and ensures correct pipeline progression.
+
+🔀 Tool Router
+
+Routes requests based on type, context, and metadata.
+
+🧠 Intent Classification Engine
+
+Uses logic/ML rules to detect user intent.
+
+🧩 Service Layer
+
+Handles domain-specific operations:
+
+Account handling
+Analytics processing
+General utilities
+📤 Response Generator
+
+Formats and normalizes final output.
+
+⚙️ Key Features
+Intelligent routing engine
+Scalable micro-routing architecture
+Plug-and-play tool system
+Async-ready processing pipeline
+Clean separation between orchestration and execution
+
+📌 Future Enhancements
+Add LLM-based intent classification
+Introduce event-driven message queue (RabbitMQ/Kafka)
+Plugin registry system
+Distributed MCP nodes
+Observability layer (logs + tracing)
 
 
-Output formatting
-2. Extensibility
-New tools can be added without modifying the architecture.
-Example:
+🧾 Summary 
 
-Current Tools
-
-- Account Management Tool
-- Account Analytics Tool
-- General Assistant Tool
-
-Future Tools
-
-- Billing Tool
-- Compliance Tool
-- Reporting Tool
-- Audit Tool
-- Notification Tool
-
-Only the tool registry requires updates.
-3. Scalability
-Supports future integrations:
-
-
-FastAPI
-
-RabbitMQ
-
-Kafka
-
-PostgreSQL
-
-Redis
-
-Vector Databases
-
-OpenAI
-
-Claude
-
-Gemini
-
-Local LLMs
-Production Features
-Current
-✅ Async Processing
-✅ Intelligent Routing
-✅ Plugin Architecture
-✅ Structured Logging
-✅ Confidence Scoring
-✅ Modular Design
-Future Enterprise Enhancements
-Multi-Tool Execution
-User Query
-     │
-     ▼
-Account Tool
-     │
-     ├── Analytics
-     ├── Billing
-     └── Compliance
-
-RabbitMQ Integration
-User
- │
- ▼
-MCP API
- │
- ▼
-RabbitMQ Queue
- │
- ▼
-Workers
- │
- ▼
-Response
-
-Audit Logging
-Track:
-
-
-Request ID
-
-User ID
-
-Tool Invoked
-
-Execution Time
-
-Response Status
-RAG Integration
-User Query
-      │
-      ▼
-Vector Database
-      │
-      ▼
-Relevant Context
-      │
-      ▼
-Tool Execution
-
-Conclusion
-The MCP-Based Intelligent Account Routing Architecture provides a scalable, maintainable, and enterprise-ready foundation for handling account-related workflows through centralized orchestration and specialized tool execution.
-The architecture promotes modularity, extensibility, and future integration with distributed systems, AI models, message queues, databases, and enterprise services—making it suitable for production-grade deployments and long-term platform evolution.
+The MCP system is designed as a central orchestration brain that intelligently routes user requests into specialized services using a structured, scalable, and extensible architecture.
