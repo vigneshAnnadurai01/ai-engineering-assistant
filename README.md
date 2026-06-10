@@ -20,8 +20,7 @@ Clean separation of concerns
 🏗️ System Architecture
  
 
-![MCP Architecture](images/mermaid-diagram (2).png)
-
+![MCP Architecture](images/mcp-architecture.png)
 
 🔄 Request Processing Lifecycle
 Step 1: User Request
