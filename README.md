@@ -26,103 +26,26 @@ It acts as a **central decision-making layer** between user input and backend bu
 
 ## 🏗️ System Architecture
 
-```mermaid
-sequenceDiagram
-    autonumber
-    participant U as User
-    participant API as MCP Server
-    participant OR as Request Orchestrator
-    participant RT as Tool Router
-    participant IE as Intent Classification Engine
-    participant AL as Analytics Tools
-    participant AS as Assistant Tools
-    participant GT as Generic Tools
-    participant AC1 as Account Services (Analytics)
-    participant AC2 as Account Services (Assistant)
-    participant GS as General Services
-    participant RG as Response Generator
-
-    U->>API: User Request
-    API->>OR: Validate & Forward
-    OR->>RT: Request Details
-    RT->>IE: Process & Classify
-
-    par Fork/Join Based on Classification
-        alt Analytics
-            IE->>AL: Intent: Analytics
-            AL->>AC1: Execution
-            AC1->>RG: Service Response
-        else Assistant
-            IE->>AS: Intent: Assistant
-            AS->>AC2: Execution
-            AC2->>RG: Service Response
-        else Generic
-            IE->>GT: Intent: Generic
-            GT->>GS: Execution
-            GS->>RG: Service Response
-        end
-    end
-
-    RG->>U: Final Response
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 📌 MCP-Based Intelligent Account Routing System
-
-## 🚀 Overview
-
-The **MCP (Model Context Pipeline)** System is a modular orchestration framework designed to intelligently process user requests and route them to specialized account-related services.
-
-It acts as a **central decision-making layer** between user input and backend business services, enabling:
-
-- 🧠 Intelligent request routing  
-- 🔌 Scalable plugin-based architecture  
-- ⚡ Async processing support  
-- 🎯 Context-aware tool selection  
-- 🧩 Clean separation of concerns  
-
----
-
-## 🧠 Core Principles
-
-- 🔹 Separation of Concerns  
-- 🔹 Plugin-Based Extensibility  
-- 🔹 Async Processing Architecture  
-- 🔹 Intelligent Routing Engine  
-- 🔹 Centralized Orchestration Layer  
-
----
-
-## 🏗️ System Architecture
-
 ### 📊 MCP Architecture Overview
+flowchart TD
+A[Client Request] --> B[MCP Orchestrator]
 
+B --> C[Router / Intent Engine]
 
+C -->|Sync Path| D1[Fast Services]
+C -->|Async Path| MQ[(RabbitMQ Queue)]
+
+MQ --> W1[Worker Service]
+MQ --> W2[Background Jobs]
+
+W1 --> DB[(State / Context Store)]
+W2 --> DB
+
+D1 --> R[Response Aggregator]
+DB --> R
+
+R --> F[Final API Response]
+ 
 
 ---
 
