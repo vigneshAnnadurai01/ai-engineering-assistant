@@ -28,6 +28,8 @@ It acts as a **central decision-making layer** between user input and backend bu
 
 ### 📊 MCP Architecture Overview
 
+```mermaid id="t3xq9k"
+
 sequenceDiagram
     autonumber
     participant U as User
