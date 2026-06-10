@@ -18,9 +18,9 @@ Clean separation of concerns
 🔹 Centralized Orchestration Layer
 
 🏗️ System Architecture
-C:\vignesh-Ezio\Model_context_protocal\project-2\mermaid-diagram (2).png
+ 
 
-
+![image](https://user-images.githubusercontent.com/xxxxx/xxxx.png)
 
 
 🔄 Request Processing Lifecycle
@@ -66,33 +66,7 @@ Returns optimized response to the user.
 🔁 Sequence Flow (Runtime Behavior)
 
 sequenceDiagram
-  sequenceDiagram
-    autonumber
-    participant U as User
-    participant API as MCP Server
-    participant OR as Request Orchestrator
-    participant RT as Tool Router
-    participant IE as Intent Engine
-    participant SV as Service Layer
-    participant RG as Response Generator
-
-    U->>API: Send Request
-    API->>OR: Validate & Forward Request
-    OR->>RT: Route Request
-    RT->>IE: Classify Intent
-
-    alt Analytics Request
-        IE->>SV: Analytics Service
-    else Assistant Request
-        IE->>SV: Assistant Service
-    else Tools Request
-        IE->>SV: Tools Service
-    else General Request
-        IE->>SV: General Service
-    end
-
-    SV->>RG: Process Response
-    RG->>U: Final Response
+  ![image](https://user-images.githubusercontent.com/xxxxx/xxxx.png)
 
 
 🔌 Component Breakdown
