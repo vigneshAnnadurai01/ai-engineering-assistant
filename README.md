@@ -1,72 +1,35 @@
-# 📌 MCP-Based Intelligent Account Routing System
+#  MCP-Based Intelligent Account Routing System
 
-## 🚀 Overview
+##  Overview
 
 The **MCP (Model Context Pipeline)** System is a modular orchestration framework designed to intelligently process user requests and route them to specialized account-related services.
 
 It acts as a **central decision-making layer** between user input and backend business services, enabling:
 
-- 🧠 Intelligent request routing  
-- 🔌 Scalable plugin-based architecture  
-- ⚡ Async processing support  
-- 🎯 Context-aware tool selection  
-- 🧩 Clean separation of concerns  
+-  Intelligent request routing  
+-  Scalable plugin-based architecture  
+-  Async processing support  
+-  Context-aware tool selection  
+-  Clean separation of concerns  
 
 ---
 
-## 🧠 Core Principles
+## Core Principles
 
-- 🔹 Separation of Concerns  
-- 🔹 Plugin-Based Extensibility  
-- 🔹 Async Processing Architecture  
-- 🔹 Intelligent Routing Engine  
-- 🔹 Centralized Orchestration Layer  
+-  Separation of Concerns  
+-  Plugin-Based Extensibility  
+-  Async Processing Architecture  
+-  Intelligent Routing Engine  
+-  Centralized Orchestration Layer  
 
 ---
 
 
  
-
+ 
 ---
 
-## 🔄 Request Processing Lifecycle
-
-### Step 1: User Request
-User submits a request through API / UI layer.
-
-### Step 2: MCP Server
-Entry point that receives and validates requests.
-
-### Step 3: Request Orchestrator
-Coordinates the entire flow and manages routing logic.
-
-### Step 4: Tool Router
-Determines which internal system should handle the request.
-
-### Step 5: Intent Classification
-Analyzes request intent using classification engine:
-
-- Analytics  
-- Assistant  
-- Tools  
-- General Queries  
-
-### Step 6: Service Execution
-Routes request to appropriate domain services:
-
-- Account Services  
-- General Services  
-- Management Services  
-
-### Step 7: Response Generator
-Aggregates outputs and formats final structured response.
-
-### Step 8: Final Response
-Returns optimized response to the user.
-
----
-
-## 🔁 Sequence Flow (Runtime Behavior)
+##  Sequence Flow (Runtime Behavior)
 
 ```mermaid id="t3xq9k"
 sequenceDiagram
