@@ -24,27 +24,7 @@ It acts as a **central decision-making layer** between user input and backend bu
 
 ---
 
-## 🏗️ System Architecture
 
-### 📊 MCP Architecture Overview
-flowchart TD
-A[Client Request] --> B[MCP Orchestrator]
-
-B --> C[Router / Intent Engine]
-
-C -->|Sync Path| D1[Fast Services]
-C -->|Async Path| MQ[(RabbitMQ Queue)]
-
-MQ --> W1[Worker Service]
-MQ --> W2[Background Jobs]
-
-W1 --> DB[(State / Context Store)]
-W2 --> DB
-
-D1 --> R[Response Aggregator]
-DB --> R
-
-R --> F[Final API Response]
  
 
 ---
