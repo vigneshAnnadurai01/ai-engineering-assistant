@@ -27,7 +27,7 @@ class UserRequest(BaseModel):
 # ==========================
 
 
-class AccountToolTool:
+class AccountTool:
     async def execute(self, query: str, document=None):
         return {
             "tool": "AccountTool Tool",
@@ -36,7 +36,7 @@ class AccountToolTool:
         }
 
 
-class Account_AnalyticsToolTool:
+class Account_AnalyticsTool:
     async def execute(self, query: str, document=None):
         return {
             "tool": "Account_AnalyticsTool Tool",
@@ -62,8 +62,8 @@ class MCPServer:
 
     def __init__(self):
         self.tools = {
-            "AccountTool": AccountToolTool(),
-            "Account_AnalyticsTool": Account_AnalyticsToolTool(),
+            "AccountTool": AccountTool(),
+            "Account_AnalyticsTool": Account_AnalyticsTool(),
             "General_Assistant": General_AssistantTool()
         }
 
