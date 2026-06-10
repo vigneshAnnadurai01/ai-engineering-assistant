@@ -22,43 +22,43 @@ class BaseTool(ABC):
         pass
 
  
-# PCB TOOL
+# Account TOOL
  
-class PCBTool(BaseTool):
+class AccountTool(BaseTool):
 
     async def execute(self, query: str, document: str = None):
-        logger.info("Executing PCB Tool")
+        logger.info("Executing Account Tool")
 
         return {
-            "tool": "PCB",
+            "tool": "Account",
             "confidence": 0.92,
-            "result": f"PCB analysis completed for: {query}"
+            "result": f"Account analysis completed for: {query}"
         }
 
 
-# BOM TOOL
+# Account_Analytics TOOL
  
-class BOMTool(BaseTool):
+class Account_AnalyticsTool(BaseTool):
 
     async def execute(self, query: str, document: str = None):
-        logger.info("Executing BOM Tool")
+        logger.info("Executing Account_Analytics Tool")
 
         return {
-            "tool": "BOM",
+            "tool": "Account_Analytics",
             "confidence": 0.90,
-            "result": f"BOM optimization completed for: {query}"
+            "result": f"Account_Analytics optimization completed for: {query}"
         }
 
 
-# CHATBOT TOOL (FALLBACK)
+# General_Assistant TOOL (FALLBACK)
  
-class ChatbotTool(BaseTool):
+class General_AssistantTool(BaseTool):
 
     async def execute(self, query: str, document: str = None):
-        logger.info("Executing Chatbot Tool")
+        logger.info("Executing General_Assistant Tool")
 
         return {
-            "tool": "CHATBOT",
+            "tool": "General_Assistant",
             "confidence": 0.70,
             "result": f"General assistant response for: {query}"
         }
@@ -71,9 +71,9 @@ class ToolRouter:
     def __init__(self):
 
         self.tools = {
-            "PCB": PCBTool(),
-            "BOM": BOMTool(),
-            "CHATBOT": ChatbotTool()
+            "Account": AccountTool(),
+            "Account_Analytics": Account_AnalyticsTool(),
+            "General_Assistant": General_AssistantTool()
         }
 
     async def classify_intent(self, query: str):
@@ -81,13 +81,13 @@ class ToolRouter:
         q = query.lower()
 
         # SMART routing logic (FAANG style simple AI heuristic)
-        if "pcb" in q or "circuit" in q:
-            return "PCB", 0.95
+        if "Account" in q or "circuit" in q:
+            return "Account", 0.95
 
-        if "bom" in q or "cost" in q:
-            return "BOM", 0.93
+        if "Account_Analytics" in q or "cost" in q:
+            return "Account_Analytics", 0.93
 
-        return "CHATBOT", 0.70
+        return "General_Assistant", 0.70
 
     async def execute(self, query: str, document: str = None):
 

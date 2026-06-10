@@ -26,28 +26,28 @@ class UserRequest(BaseModel):
 # MCP TOOLS (NO ANALYSIS CHANGE)
 # ==========================
 
-class PCBTool:
+class AccountToolTool:
     async def execute(self, query: str, document=None):
         return {
-            "tool": "PCB Tool",
-            "result": f"PCB processed: {query}",
+            "tool": "AccountTool Tool",
+            "result": f"AccountTool processed: {query}",
             "doc_received": bool(document)
         }
 
 
-class BOMTool:
+class Account_AnalyticsToolTool:
     async def execute(self, query: str, document=None):
         return {
-            "tool": "BOM Tool",
-            "result": f"BOM processed: {query}",
+            "tool": "Account_AnalyticsTool Tool",
+            "result": f"Account_AnalyticsTool processed: {query}",
             "doc_received": bool(document)
         }
 
 
-class ChatbotTool:
+class General_AssistantTool:
     async def execute(self, query: str, document=None):
         return {
-            "tool": "Chatbot Tool",
+            "tool": "General_Assistant Tool",
             "result": f"Chat response: {query}",
             "doc_received": bool(document)
         }
@@ -61,9 +61,9 @@ class MCPServer:
 
     def __init__(self):
         self.tools = {
-            "pcb": PCBTool(),
-            "bom": BOMTool(),
-            "chatbot": ChatbotTool()
+            "AccountTool": AccountToolTool(),
+            "Account_AnalyticsTool": Account_AnalyticsToolTool(),
+            "General_Assistant": General_AssistantTool()
         }
 
     async def route_tool(self, tool_name: str, query: str, document=None):
@@ -92,9 +92,9 @@ class LLMAgent:
 You are an MCP tool router.
 
 Choose ONLY ONE:
-pcb
-bom
-chatbot
+AccountTool
+Account_AnalyticsTool
+General_Assistant
 
 Rules:
 - Return only one word
