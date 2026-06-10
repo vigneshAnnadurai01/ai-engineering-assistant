@@ -16,27 +16,9 @@ Clean separation of concerns
 🔹 Async Processing Architecture
 🔹 Intelligent Routing Engine
 🔹 Centralized Orchestration Layer
+
 🏗️ System Architecture
-flowchart LR
-    U[User Request] --> M[MCP Server]
-    M --> O[Request Orchestrator]
-    O --> R[Tool Router]
-    R --> I[Intent Classification Engine]
-
-    I --> A1[Analytics Tools]
-    I --> A2[Assistant Tools]
-    I --> T1[Generic Tools]
-
-    A1 --> ACC1[Account Services]
-    A2 --> ACC2[Account Services]
-    T1 --> GEN[General Services]
-
-    ACC1 --> RESP[Response Generator]
-    ACC2 --> RESP
-    GEN --> RESP
-
-    RESP --> FINAL[Final Response]
-
+C:\vignesh-Ezio\Model_context_protocal\project-2\mermaid-diagram (2).png
 
 🔄 Request Processing Lifecycle
 Step 1: User Request
