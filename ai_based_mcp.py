@@ -26,6 +26,7 @@ class UserRequest(BaseModel):
 # MCP TOOLS (NO ANALYSIS CHANGE)
 # ==========================
 
+
 class AccountToolTool:
     async def execute(self, query: str, document=None):
         return {

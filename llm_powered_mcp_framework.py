@@ -21,6 +21,7 @@ class BaseTool(ABC):
     async def execute(self, query: str, document: str = None) -> dict:
         pass
 
+
  
 # Account TOOL
  
