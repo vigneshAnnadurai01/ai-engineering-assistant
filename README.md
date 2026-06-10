@@ -66,36 +66,33 @@ Returns optimized response to the user.
 🔁 Sequence Flow (Runtime Behavior)
 
 sequenceDiagram
-  ## 🔁 Sequence Diagram (Runtime Flow)
-
-```mermaid
-sequenceDiagram
+  sequenceDiagram
     autonumber
-    participant U as 👤 User
-    participant API as 🌐 MCP Server
-    participant OR as 🎯 Request Orchestrator
-    participant RT as 🔀 Tool Router
-    participant IE as 🧠 Intent Engine
-    participant SV as 🧩 Service Layer
-    participant RG as 📤 Response Generator
+    participant U as User
+    participant API as MCP Server
+    participant OR as Request Orchestrator
+    participant RT as Tool Router
+    participant IE as Intent Engine
+    participant SV as Service Layer
+    participant RG as Response Generator
 
     U->>API: Send Request
     API->>OR: Validate & Forward Request
-    OR->>RT: Start Routing Process
+    OR->>RT: Route Request
     RT->>IE: Classify Intent
 
     alt Analytics Request
-        IE->>SV: Route to Analytics Service
+        IE->>SV: Analytics Service
     else Assistant Request
-        IE->>SV: Route to Assistant Service
+        IE->>SV: Assistant Service
     else Tools Request
-        IE->>SV: Route to Tools Service
+        IE->>SV: Tools Service
     else General Request
-        IE->>SV: Route to General Service
+        IE->>SV: General Service
     end
 
-    SV->>RG: Process & Return Data
-    RG->>U: Final Structured Response
+    SV->>RG: Process Response
+    RG->>U: Final Response
 
 
 🔌 Component Breakdown
