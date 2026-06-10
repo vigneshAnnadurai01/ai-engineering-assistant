@@ -1,116 +1,101 @@
-📌 MCP-Based Intelligent Account Routing System
-🚀 Overview
+# 📌 MCP-Based Intelligent Account Routing System
 
-The MCP (Model Context Pipeline) System is a modular orchestration framework designed to intelligently process user requests and route them to specialized account-related services.
+## 🚀 Overview
 
-It acts as a central decision-making layer between user input and backend business services, enabling:
+The **MCP (Model Context Pipeline)** System is a modular orchestration framework designed to intelligently process user requests and route them to specialized account-related services.
 
-Intelligent request routing
-Scalable plugin-based architecture
-Async processing support
-Context-aware tool selection
-Clean separation of concerns
-🧠 Core Principles
-🔹 Separation of Concerns
-🔹 Plugin-Based Extensibility
-🔹 Async Processing Architecture
-🔹 Intelligent Routing Engine
-🔹 Centralized Orchestration Layer
+It acts as a **central decision-making layer** between user input and backend business services, enabling:
 
-🏗️ System Architecture
- 
+- 🧠 Intelligent request routing  
+- 🔌 Scalable plugin-based architecture  
+- ⚡ Async processing support  
+- 🎯 Context-aware tool selection  
+- 🧩 Clean separation of concerns  
 
-![MCP Architecture](images/mcp-architecture.png)
+---
 
-🔄 Request Processing Lifecycle
-Step 1: User Request
+## 🧠 Core Principles
 
+- 🔹 Separation of Concerns  
+- 🔹 Plugin-Based Extensibility  
+- 🔹 Async Processing Architecture  
+- 🔹 Intelligent Routing Engine  
+- 🔹 Centralized Orchestration Layer  
+
+---
+
+## 🏗️ System Architecture
+
+### 📊 MCP Architecture Overview
+
+![MCP Architecture](sandbox:/mnt/data/d77df898-3076-491c-af0f-2016a4454a51.png)
+
+---
+
+## 🔄 Request Processing Lifecycle
+
+### Step 1: User Request
 User submits a request through API / UI layer.
 
-Step 2: MCP Server
+### Step 2: MCP Server
+Entry point that receives and validates requests.
 
-The request enters the MCP Server which acts as the entry point.
-
-Step 3: Request Orchestrator
-
+### Step 3: Request Orchestrator
 Coordinates the entire flow and manages routing logic.
 
-Step 4: Tool Router
-
+### Step 4: Tool Router
 Determines which internal system should handle the request.
 
-Step 5: Intent Classification
-
+### Step 5: Intent Classification
 Analyzes request intent using classification engine:
 
-Analytics
-Assistant
-Tools
-General Queries
-Step 6: Service Execution
+- Analytics  
+- Assistant  
+- Tools  
+- General Queries  
 
+### Step 6: Service Execution
 Routes request to appropriate domain services:
 
-Account Services
-General Services
-Management Services
-Step 7: Response Generator
+- Account Services  
+- General Services  
+- Management Services  
 
+### Step 7: Response Generator
 Aggregates outputs and formats final structured response.
 
-Step 8: Final Response
-
+### Step 8: Final Response
 Returns optimized response to the user.
 
-🔁 Sequence Flow (Runtime Behavior)
+---
 
+## 🔁 Sequence Flow (Runtime Behavior)
+
+```mermaid id="t3xq9k"
 sequenceDiagram
-  ![image](https://user-images.githubusercontent.com/xxxxx/xxxx.png)
+    autonumber
+    participant U as User
+    participant API as MCP Server
+    participant OR as Request Orchestrator
+    participant RT as Tool Router
+    participant IE as Intent Engine
+    participant SV as Service Layer
+    participant RG as Response Generator
 
+    U->>API: Send Request
+    API->>OR: Validate & Forward Request
+    OR->>RT: Route Request
+    RT->>IE: Classify Intent
 
-🔌 Component Breakdown
-🧭 MCP Server
+    alt Analytics Request
+        IE->>SV: Analytics Service
+    else Assistant Request
+        IE->>SV: Assistant Service
+    else Tools Request
+        IE->>SV: Tools Service
+    else General Request
+        IE->>SV: General Service
+    end
 
-Entry point that receives and validates all incoming requests.
-
-🎯 Request Orchestrator
-
-Controls flow execution and ensures correct pipeline progression.
-
-🔀 Tool Router
-
-Routes requests based on type, context, and metadata.
-
-🧠 Intent Classification Engine
-
-Uses logic/ML rules to detect user intent.
-
-🧩 Service Layer
-
-Handles domain-specific operations:
-
-Account handling
-Analytics processing
-General utilities
-📤 Response Generator
-
-Formats and normalizes final output.
-
-⚙️ Key Features
-Intelligent routing engine
-Scalable micro-routing architecture
-Plug-and-play tool system
-Async-ready processing pipeline
-Clean separation between orchestration and execution
-
-📌 Future Enhancements
-Add LLM-based intent classification
-Introduce event-driven message queue (RabbitMQ/Kafka)
-Plugin registry system
-Distributed MCP nodes
-Observability layer (logs + tracing)
-
-
-🧾 Summary 
-
-The MCP system is designed as a central orchestration brain that intelligently routes user requests into specialized services using a structured, scalable, and extensible architecture.
+    SV->>RG: Process Response
+    RG->>U: Final Response
