@@ -20,6 +20,9 @@ Clean separation of concerns
 🏗️ System Architecture
 C:\vignesh-Ezio\Model_context_protocal\project-2\mermaid-diagram (2).png
 
+
+
+
 🔄 Request Processing Lifecycle
 Step 1: User Request
 
@@ -63,22 +66,36 @@ Returns optimized response to the user.
 🔁 Sequence Flow (Runtime Behavior)
 
 sequenceDiagram
-    participant User
-    participant MCP
-    participant Orchestrator
-    participant Router
-    participant Intent
-    participant Service
-    participant Response
+  ## 🔁 Sequence Diagram (Runtime Flow)
 
-    User->>MCP: Send Request
-    MCP->>Orchestrator: Forward Request
-    Orchestrator->>Router: Route Decision
-    Router->>Intent: Classify Intent
-    Intent->>Service: Execute Service Logic
-    Service->>Response: Return Data
-    Response->>User: Final Response
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as 👤 User
+    participant API as 🌐 MCP Server
+    participant OR as 🎯 Request Orchestrator
+    participant RT as 🔀 Tool Router
+    participant IE as 🧠 Intent Engine
+    participant SV as 🧩 Service Layer
+    participant RG as 📤 Response Generator
 
+    U->>API: Send Request
+    API->>OR: Validate & Forward Request
+    OR->>RT: Start Routing Process
+    RT->>IE: Classify Intent
+
+    alt Analytics Request
+        IE->>SV: Route to Analytics Service
+    else Assistant Request
+        IE->>SV: Route to Assistant Service
+    else Tools Request
+        IE->>SV: Route to Tools Service
+    else General Request
+        IE->>SV: Route to General Service
+    end
+
+    SV->>RG: Process & Return Data
+    RG->>U: Final Structured Response
 
 
 🔌 Component Breakdown
