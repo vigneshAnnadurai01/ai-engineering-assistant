@@ -20,7 +20,7 @@ Clean separation of concerns
 🏗️ System Architecture
  
 
-![image](https://user-images.githubusercontent.com/xxxxx/xxxx.png)
+![MCP Architecture](images/mermaid-diagram (2).png)
 
 
 🔄 Request Processing Lifecycle
