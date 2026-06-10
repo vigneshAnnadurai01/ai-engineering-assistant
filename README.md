@@ -28,7 +28,43 @@ It acts as a **central decision-making layer** between user input and backend bu
 
 ### 📊 MCP Architecture Overview
 
-![MCP Architecture](sandbox:/mnt/data/d77df898-3076-491c-af0f-2016a4454a51.png)
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant API as MCP Server
+    participant OR as Request Orchestrator
+    participant RT as Tool Router
+    participant IE as Intent Classification Engine
+    participant AL as Analytics Tools
+    participant AS as Assistant Tools
+    participant GT as Generic Tools
+    participant AC1 as Account Services (Analytics)
+    participant AC2 as Account Services (Assistant)
+    participant GS as General Services
+    participant RG as Response Generator
+
+    U->>API: User Request
+    API->>OR: Validate & Forward
+    OR->>RT: Request Details
+    RT->>IE: Process & Classify
+
+    par Fork/Join Based on Classification
+        alt Analytics
+            IE->>AL: Intent: Analytics
+            AL->>AC1: Execution
+            AC1->>RG: Service Response
+        else Assistant
+            IE->>AS: Intent: Assistant
+            AS->>AC2: Execution
+            AC2->>RG: Service Response
+        else Generic
+            IE->>GT: Intent: Generic
+            GT->>GS: Execution
+            GS->>RG: Service Response
+        end
+    end
+
+    RG->>U: Final Response
 
 ---
 
