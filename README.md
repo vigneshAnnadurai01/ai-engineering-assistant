@@ -26,10 +26,7 @@ It acts as a **central decision-making layer** between user input and backend bu
 
 ## 🏗️ System Architecture
 
-### 📊 MCP Architecture Overview
-
-```mermaid id="t3xq9k"
-
+```mermaid
 sequenceDiagram
     autonumber
     participant U as User
@@ -67,6 +64,65 @@ sequenceDiagram
     end
 
     RG->>U: Final Response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 📌 MCP-Based Intelligent Account Routing System
+
+## 🚀 Overview
+
+The **MCP (Model Context Pipeline)** System is a modular orchestration framework designed to intelligently process user requests and route them to specialized account-related services.
+
+It acts as a **central decision-making layer** between user input and backend business services, enabling:
+
+- 🧠 Intelligent request routing  
+- 🔌 Scalable plugin-based architecture  
+- ⚡ Async processing support  
+- 🎯 Context-aware tool selection  
+- 🧩 Clean separation of concerns  
+
+---
+
+## 🧠 Core Principles
+
+- 🔹 Separation of Concerns  
+- 🔹 Plugin-Based Extensibility  
+- 🔹 Async Processing Architecture  
+- 🔹 Intelligent Routing Engine  
+- 🔹 Centralized Orchestration Layer  
+
+---
+
+## 🏗️ System Architecture
+
+### 📊 MCP Architecture Overview
+
+
 
 ---
 
